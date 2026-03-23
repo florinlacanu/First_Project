@@ -1,8 +1,8 @@
 #!/bin/bash
 
-echo "COntainerul se va opri:"
+echo "Container will be closed:"
 if docker stop calc_cont; then
-	echo "Containerul s-a oprit"
+	echo "Container has stoped"
 else
-	echo "Containerul nu se opreste sau inexistent"
+	echo "Container doesn't exist"
 fi

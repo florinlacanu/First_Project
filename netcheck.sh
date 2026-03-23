@@ -2,52 +2,52 @@
 echo
 
 INTERFACE="docker0"
-echo "=====Afiseaza stare conectare retea $INTERFACE:====="
+echo "Network status check $INTERFACE:"
 if ip link show "$INTERFACE" &> /dev/null; then
         if ip link show "$INTERFACE" | grep -q 'state UP'; then
-                echo "Reteaua $INTERFACE este conectata (UP)"
+                echo "$INTERFACE is connected (UP)"
         else
-                echo "Reteaua $INTERFACE nu  este conectata (DOWN)"
+                echo "$INTERFACE isn't connected (DOWN)"
         fi
 else
-        echo "Reteaua $INTERFACE nu exista"
+        echo "$INTERFACE doesn't exist"
 fi
 echo
 
-echo "======Afiseaza existenta IP retea $INTERFACE:====="
+echo "IP check $INTERFACE:"
 ip -br a |grep "$INTERFACE" |awk '{print$3}'
 
 echo
 
-echo "===Testare conexiune internet==="
+echo "Teste internet connection:"
 if ping -c 2 8.8.8.8 &> /dev/null; then
-	echo "Exista conexiune"
+	echo "Connection established"
 else
-	echo "Nu exista conexiune"
+	echo "No connection"
 fi
 
 echo
 
-echo "=====Afisare ip route:====="
+echo "IP route:"
 ip route |grep "$INTERFACE" | awk '{print""$9}'
 
 IP=$(ip route |grep "$INTERFACE" | awk '{print$9}')
 echo
 
-echo "=====Pornire test route:====="
+echo "Test route:"
 if ping -c 2 "$IP"; then
 	echo
-	echo "Conexiune fara probleme"
+	echo "Connection established"
 else
 	echo
-	echo "Lipsa conexiune"
+	echo "No connection"
 fi
 echo
 echo "=====DNS TEST====="
 if ping -c 2 google.com; then
 	echo
-	echo "Verificare corecta"
+	echo "Ok"
 else
 	echo
-	echo "Verificare esuata"
+	echo "Error"
 fi

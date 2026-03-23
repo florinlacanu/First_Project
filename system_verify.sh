@@ -1,12 +1,12 @@
 #!/bin/bash
-echo "=====Verificare informatii sistem:====="
+echo "Information system:"
 cat /etc/os-release
 echo
-echo "Versiune distributie:====="
+echo "Version:"
 uname -a
 echo
-echo "=====Verificare nume host:====="
+echo "Host name:"
 hostname
 echo
-echo "=====Verificare timp:====="
+echo "Time:"
 date

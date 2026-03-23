@@ -3,31 +3,31 @@
 CONT="calc_cont"
 IMG="calc_img"
 
-echo "=====Va incepe procesul de inchidere si stergere a containerului si imaginii: ====="
+echo "The process of closing and deleting the container and image will begin:"
 
-echo "==Inchidere container: =="
+echo "Container closure:"
 if docker stop "$CONT" 2>/dev/null; then
-	echo "Containerul $CONT a fost oprit!"
+	echo "Container $CONT has been stoped!"
 else
-	echo "Containerul $CONT nu exista"
+	echo "Container $CONT doesn't exist!"
 fi
 echo
-echo "==Stergere container: =="
+echo "Container deletion:"
 if docker rm "$CONT" 2>/dev/null; then
-	echo "Containerul $CONT a fost sters!"
+	echo "Container $CONT has been deleted!"
 else
-	echo "Containerul $CONT nu exista"
+	echo "Container $CONT doesn't exist"
 fi
 echo
-echo "==Stergere imagine: =="
+echo "Image deletion:"
 if docker rmi "$IMG" 2>/dev/null; then
-	echo "Imaginea $IMG a fost stearsa"
+	echo "Image $IMG has been deleted"
 else
-	echo "Imaginea $IMG nu exista"
+	echo "Image $IMG doesn't exist"
 fi
 echo
-echo "==Verificare containere: =="
+echo "Container check:"
 docker ps -a
 echo
-echo "==Verificare imagini: =="
+echo "Verificare imagini:"
 docker images

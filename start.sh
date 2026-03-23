@@ -1,15 +1,15 @@
 #!/bin/bash
 
-echo "=====Calculator====="
+echo "Calculator"
 
 if docker start calc_cont; then
-	echo "Container deschis"
+	echo "Open container"
 else
-	echo "Containerul nu se deschide"
+	echo "Container can't open"
 fi
 
 if docker exec -it calc_cont python3 calculator.py; then
-	echo "Multumim"
+	echo "Thank you"
 else
-	echo "Nefunctional"
+	echo "Nonfunctional"
 fi

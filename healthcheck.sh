@@ -1,21 +1,21 @@
 #!/bin/bash
 I="Mem"
-echo "=====Verificare persoane conectate:====="
+echo "Check connected people:"
 w | grep "user" |awk '{print$7}'
-echo "=====Verificare incarcare date:====="
+echo "Check data loading:"
 uptime
 echo
-echo "=====Memorie totala:====="
+echo "Total memory:"
 free -h | grep "$I" |awk '{print$2}'
 echo
-echo "=====Memorie folosite:====="
+echo "Used memory:"
 free -h | grep "$I" |awk '{print$3}'
 echo
-echo "=====Memorie ramasa:====="
+echo "Available memory:"
 free -h | grep "$I" |awk '{print$7}'
 echo
-echo "=====Verificare memorie Swap:====="
+echo "Check Swap memory:"
 free -h | grep "Swap"
 echo
-echo "=====Procent Memorie Utilizata:====="
+echo "Percentage of memory used:"
 df -h | grep "/dev/nvme0n1p5" | awk '{print$5}'
