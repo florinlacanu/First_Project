@@ -1,21 +1,27 @@
 #!/bin/bash
-I="Mem"
-echo "Check connected people:"
-w | grep "user" |awk '{print$7}'
-echo "Check data loading:"
-uptime
+P=$(w -h | awk '{print$1}')
+echo "Check Connected people: $P"
 echo
-echo "Total memory:"
-free -h | grep "$I" |awk '{print$2}'
+C=$(lscpu | grep -m 1 "CPU(s):" | awk '{print$2}')
+echo "Core processors: $C"
 echo
-echo "Used memory:"
-free -h | grep "$I" |awk '{print$3}'
+C1=$(lscpu | grep "On-line CPU(s) list:" | awk '{print$4}')
+echo "Online core processors: $C1"
 echo
-echo "Available memory:"
-free -h | grep "$I" |awk '{print$7}'
+D=$(uptime | awk -F 'load average:' '{print$2}')
+echo "Check data loading: $D"
 echo
-echo "Check Swap memory:"
-free -h | grep "Swap"
+F=$(free -h | grep "Mem" |awk '{print$2}')
+echo "Total Memory: $F"
 echo
-echo "Percentage of memory used:"
-df -h | grep "/dev/nvme0n1p5" | awk '{print$5}'
+F1=$(free -h | grep "Mem" |awk '{print$3}')
+echo "Used Memory: $F1"
+echo
+F2=$(free -h | grep "Mem" |awk '{print$7}')
+echo "Available Memory: $F2"
+echo
+F3=$(free -h | awk NR==3 | awk '{print$2}')
+echo "Swap Memory: $F3"
+echo
+F4=$(df -h / | awk NR==2 | awk '{print$5}')
+echo "Percentage of Memory Used: $F4"
