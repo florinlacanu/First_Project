@@ -1,67 +1,72 @@
-def adunare(a,b):
+def Addition(a,b):
 	return a+b
-def scadere(a,b):
+
+def Subtraction(a,b):
 	return a-b
-def inmultire(a,b):
+
+def Multiplication(a,b):
 	return a*b
-def impartire(a,b):
+
+def Division(a,b):
 	if b==0:
-		return 'Eroare impartire la 0'
-	return a/b
+		return "Error"
+	else:
+		return a/b
+add="Addition"
+sub="Subtraction"
+mul="Multiplication"
+div="Division"
 
-print(f'|-------------------------Calculator-------------------------|')
-print(f' Press "Q/q" to exit the application!)\n')
+print("==================CALCULATOR==================\n")
 
-print(f'We have the following options: ')
-print(f'1. Addition ')
-print(f'2. Subtraction ')
-print(f'3. Multiplication ')
-print(f'4. Division \n')
-
-sun='Addition'
-sup='Subtraction'
-suc='Multiplication'
-sud='Division'
+print("We have the following options: \n")
+print("1. Addition!")
+print("2. Subtraction!")
+print("3. Multiplication!")
+print("4. Division!")
 
 while True:
 	try:
-		puf=input(f'Choose the number of the operation you want to perform: ')
+		while True:
+			while True:
+				num1=int(input(f'\nChoose a number above for what operation you want to do: '))
+				if num1==1:
+					print(f"\nYou selected {add}!")
+					break
+				elif num1==2:
+					print(f"\nYou selected {sub}!")
+					break
+				elif num1==3:
+					print(f"\nYou selected {mul}!")
+					break
+				elif num1==4:
+					print(f"\nYou selected {div}!")
+					break
+				else:
+					print("\nYou did not select correct operations!")
 
-		if puf.lower()=='q':
-			print('Have a nice day!')
-			break
+			num2=float(input(f'\nSelect your first number: '))
+			num3=float(input(f'Select your second number: '))
 
-		puf=int(puf)
+			if num1==1:
+				print(f"{num2} + {num3} = {Addition(num2, num3)} .")
+			elif num1==2:
+				print(f"{num2} - {num3} = {Subtraction(num2, num3)} .")
+			elif num1==3:
+				print(f"{num2} * {num3} = {Multiplication(num2, num3)} .")
+			elif num1==4:
+				print(f"{num2} / {num3} = {Division(num2, num3)} .")
+			else:
+				print('Calculation Error!')
 
-		if puf==1:
-			print(f'The selected operation is: {sun}')
-		elif puf==2:
-			print(f'The selected operation is: {sup}')
-		elif puf==3:
-			print(f'THe selected operation is: {suc}')
-		elif puf==4:
-			print(f'The selected operation is: {sud}')
-		else:
-			break
-		a=input(f'Please choose your first number: ')
-		if a=='q':
-			break
-		a1=float(a)
-		b=input(f'Please choose your second number: ')
-		if b=='q':
-			break
-		b1=float(b)
-		if puf==1:
-			print(f'Rezultat: {Addiction(a1,b1)}')
-		elif puf==2:
-			print(f'Rezultat: {Subtraction(a1,b1)}')
-		elif puf==3:
-			print(f'Rezultat: {Multiplication(a1,b1)}')
-		elif puf==4:
-			print(f'Rezultat: {Division(a1,b1)}')
-		else:
-			print('Error')
-		break
+			again=input(f'Choose with Yes/No if you want to continue or not: ').lower()
+			if again != 'yes':
+				print('Calculator Closed!')
+				exit()
+
 	except ValueError:
-		print('!!!Enter numbers only!!!')
-	break
+		print('Input Error')
+		again2=input(f'\nChoose with Yes/No if you want to closed the calculator after your little mistake: ').lower()
+		if again2!='no':
+			print('Calculator Closed!')
+			break
